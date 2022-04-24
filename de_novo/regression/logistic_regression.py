@@ -24,4 +24,17 @@ def loadDataSet(p, file_n):
     return dataMat, labelMat
 
 def sigmoid(X):
-    return 1.0/(1+np.exp(
+    return 1.0/(1+np.exp(-X))
+
+# 梯度下降法求回归系数a
+def gradAscent(dataMatIn, classLabels):
+    dataMatrix = np.mat(dataMatIn)             # 转换成numpy中的矩阵, X, 90 x 3
+    labelMat = np.mat(classLabels).transpose()  # 转换成numpy中的矩阵, y, 90 x 1
+    m, n = shape(dataMatrix)  # m=90, n=3
+    alpha = 0.001  # 学习率
+    maxCycles = 1000
+    weights = ones((n, 1))  # 初始参数, 3 x 1
+    for k in range(maxCycles):              # heavy on matrix operations
+        h = sigmoid(np.dot(dataMatrix, weights))     # 模型预测值, 90 x 1, 矩阵乘法
+        error = h - labelMat              # 真实值与预测值之间的误差, 90 x 1
+        temp = np.dot(dataMatrix.tra
