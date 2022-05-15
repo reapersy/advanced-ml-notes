@@ -54,4 +54,26 @@ def plot(n, dist, subplot, plt_handle, dist_type):
     norm_x = np.linspace(mu - 3 * sigma, mu + 3 * sigma, bins)
     pdf1 = norm_dis.pdf(norm_x)
     plt.plot(norm_x, pdf1, 'r--', alpha=0.4)
-    return p
+    return plt
+
+size = [1, 2, 3, 4, 8, 10]
+
+# sum of bernoulli distribution
+# dist_type = 'bern'
+# bern_para = [0.99]
+# single_sample_dist = stats.bernoulli(p=bern_para[0])  # 定义一个伯努利分布
+
+# sum of binomial distribution
+# dist_type = 'bino'
+# bino_para = [20, 0.4]
+# single_sample_dist = stats.binom(n=bino_para[0], p=bino_para[1])  # 定义一个二项分布
+
+# sum of uniform distribution
+dist_type = 'uniform'
+uniform_para = [3, 2]
+single_sample_dist = stats.uniform(loc=uniform_para[0], scale=uniform_para[1])  # 定义一个均匀分布
+
+
+# 下面是利用matplotlib画图
+plt.figure(1)
+plt = plot(n=size[0], dist=single_sample_dist, subplot=
