@@ -76,4 +76,11 @@ single_sample_dist = stats.uniform(loc=uniform_para[0], scale=uniform_para[1])  
 
 # 下面是利用matplotlib画图
 plt.figure(1)
-plt = plot(n=size[0], dist=single_sample_dist, subplot=
+plt = plot(n=size[0], dist=single_sample_dist, subplot=321, plt_handle=plt, dist_type=dist_type)
+plt = plot(n=size[1], dist=single_sample_dist, subplot=322, plt_handle=plt, dist_type=dist_type)
+plt = plot(n=size[2], dist=single_sample_dist, subplot=323, plt_handle=plt, dist_type=dist_type)
+plt = plot(n=size[3], dist=single_sample_dist, subplot=324, plt_handle=plt, dist_type=dist_type)
+plt = plot(n=size[4], dist=single_sample_dist, subplot=325, plt_handle=plt, dist_type=dist_type)
+plt = plot(n=size[5], dist=single_sample_dist, subplot=326, plt_handle=plt, dist_type=dist_type)
+plt.tight_layout()
+plt.savefig('sum_of_{}_dist_2.png'.format(dist_type), 
