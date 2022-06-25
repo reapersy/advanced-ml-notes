@@ -15,4 +15,18 @@ def flip_plot(min_exp, max_exp):
     for exp in range(min_exp, max_exp + 1):
         x_axis.append(2**exp)
     for numFlips in x_axis:
-        num_heads
+        num_heads = 0  # 初始化，硬币正面朝上的计数为0
+        for n in range(numFlips):
+            if random.random() < 0.5:  # random.random()从[0, 1)随机的取出一个数
+                num_heads += 1  # 当随机取出的数小于0.5时，正面朝上的计数加1
+        num_tails = numFlips - num_heads  # 得到本次试验中反面朝上的次数
+        ratios.append(num_heads/float(num_tails))  # 正反面计数的比值
+    plt.title('Heads/Tails Ratios')
+    plt.xlabel('Number of Flips')
+    plt.ylabel('Heads/Tails')
+    plt.plot(x_axis, ratios)
+    plt.hlines(1, 0, x_axis[-1], linestyles='dashed', colors='r')
+    plt.show()
+
+flip_plot(4, 16)
+
