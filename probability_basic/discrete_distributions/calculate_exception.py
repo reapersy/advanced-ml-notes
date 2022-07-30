@@ -14,4 +14,8 @@ def calculate_Q1():
     val, count = np.unique(all_sum, return_counts=True)
     print(val, count)
 
-    pmf = co
+    pmf = count/len(all_sum)
+    print(pmf)
+    print(np.multiply(np.array(val), np.array(pmf)))
+    E = np.sum(np.multiply(np.array(val), np.array(pmf)))
+    print(E)
