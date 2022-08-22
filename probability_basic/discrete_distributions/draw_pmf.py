@@ -91,4 +91,22 @@ def custom_made_discrete_dis_pmf():
     print(X)
 
     fig, ax = plt.subplots(1, 1)
-    ax.plot(x
+    ax.plot(xk, custm.pmf(xk), 'ro', ms=8, mec='r')
+    ax.vlines(xk, 0, custm.pmf(xk), colors='r', linestyles='-', lw=2)
+    plt.title('Custom made discrete distribution(PMF)')
+    plt.ylabel('Probability')
+    plt.show()
+
+# custom_made_discrete_dis_pmf()
+
+
+def sampling_and_empirical_dis():
+    xk = np.arange(7)  # 所有可能的取值
+    print(xk)  # [0 1 2 3 4 5 6]
+    pk = (0.1, 0.2, 0.3, 0.1, 0.1, 0.0, 0.2)  # 各个取值的概率
+    custm = stats.rv_discrete(name='custm', values=(xk, pk))
+
+    X1 = custm.rvs(size=20)  # 第一次抽样
+    X2 = custm.rvs(size=200)  # 第二次抽样
+    # 计算X1＆X2中各个结果出现的频率(相当于PMF)
+  
