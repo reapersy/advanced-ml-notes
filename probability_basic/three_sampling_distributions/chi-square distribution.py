@@ -34,4 +34,22 @@ def chi2_distribution(df=1):
     r = chi2_dis.rvs(size=10000)
     ax.hist(r, normed=True, histtype='stepfilled', alpha=0.2)
     plt.ylabel('Probability')
-    plt.title(r'PDF of $\chi
+    plt.title(r'PDF of $\chi^2$({})'.format(df))
+    ax.legend(loc='best', frameon=False)
+    plt.show()
+
+
+def diff_chi2_dis():
+    """
+    不同参数下的卡方分布
+    :return:
+    """
+    # chi2_dis_0_5 = stats.chi2(df=0.5)
+    chi2_dis_1 = stats.chi2(df=1)
+    chi2_dis_4 = stats.chi2(df=4)
+    chi2_dis_10 = stats.chi2(df=10)
+    chi2_dis_20 = stats.chi2(df=20)
+
+    # x1 = np.linspace(chi2_dis_0_5.ppf(0.01), chi2_dis_0_5.ppf(0.99), 100)
+    x2 = np.linspace(chi2_dis_1.ppf(0.65), chi2_dis_1.ppf(0.9999999), 100)
+    x3 = np.linspace(chi2_dis_4.ppf(0.000001), chi2_dis_4.ppf(0.999999), 100)
