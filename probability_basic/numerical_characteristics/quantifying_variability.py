@@ -21,3 +21,5 @@ print(var_n_1) # 4.67
 std_n = np.std(data, ddof=0)
 std_n_minus_1 = np.std(data, ddof=1)  # 使用ddof设置自由度的偏移量
 print(std_n, std_n_minus_1)  # 2.0, 2.16
+print(std_n**2, std_n_minus_1**2)  # 4.0, 4.67
+
