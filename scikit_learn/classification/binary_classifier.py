@@ -69,4 +69,18 @@ def self_cross_val_score(sgd_clf, X, y, cv):
         X_test_fold = X[test_index]
         y_test_fold = y[test_index]
 
-        clone_clf.fit
+        clone_clf.fit(X_train_folds, y_train_folds)
+        y_pred = clone_clf.predict(X_test_fold)
+        n_correct = sum(y_pred == y_test_fold)  # 对预测正确的数字计数
+        return (n_correct / len(y_pred))
+
+# 上面的方法等价于下面的cross_val_score
+from sklearn.model_selection import cross_val_score
+cv_score = cross_val_score(sgd_clf, X_train, y_train_5, cv=3, scoring='accuracy')
+self_print('cross validation score')
+print(cv_score)
+
+## confusion matrix
+from sklearn.model_selection import cross_val_predict
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import precision_scor
