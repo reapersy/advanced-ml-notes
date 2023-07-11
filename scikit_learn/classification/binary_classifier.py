@@ -83,4 +83,18 @@ print(cv_score)
 ## confusion matrix
 from sklearn.model_selection import cross_val_predict
 from sklearn.metrics import confusion_matrix
-from sklearn.metrics import precision_scor
+from sklearn.metrics import precision_score, recall_score
+from sklearn.metrics import f1_score
+from sklearn.metrics import precision_recall_curve
+from sklearn.metrics import roc_curve
+from sklearn.metrics import roc_auc_score
+# 还是不太明白这里的cross_val_predict是如何工作的
+y_train_pred = cross_val_predict(sgd_clf, X_train, y_train_5, cv=3)
+# print(y_train_pred.shape)
+con_matrix = confusion_matrix(y_train_5, y_train_pred)
+self_print('confusion matrix')
+print(con_matrix)
+precision_sco =  precision_score(y_train_5, y_train_pred)
+recall_sco = recall_score(y_train_5, y_train_pred)
+self_print('precision & recall')
+print(precision_sco, recall_sco
