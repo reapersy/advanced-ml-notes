@@ -125,4 +125,19 @@ def plot_roc_curve(fpr, tpr, label=None):
     plt.plot(fpr, tpr, linewidth=2, label=label)
     plt.plot([0, 1], [0, 1], 'k--')
     plt.axis([0, 1, 0, 1])
-    plt.xlabel('False Positive Rate')  # 1 - specificity or 1 - precisio
+    plt.xlabel('False Positive Rate')  # 1 - specificity or 1 - precision
+    plt.ylabel('True Positive Rate')  # recall
+# plot_roc_curve(fpr, tpr)
+# plt.show()
+
+# 计算AUC(area under the curve), 最好的分类器AUC=1, 随机分类器AUC=0.5
+print('AUC is', str(roc_auc_score(y_train_5, y_scores)))
+
+
+## random forest classifier, 与随机梯度下降分类器作比较
+# RandomForestClassifier class 没有decision_function()方法
+from sklearn.ensemble import RandomForestClassifier
+forest_clf = RandomForestClassifier(random_state=42)
+y_probas_forest = cross_val_predict(forest_clf, X_train, y_train_5, cv=3, method='predict_proba')
+# print(y_probas_forest, y_probas_forest.shape)
+# print(X_train[
