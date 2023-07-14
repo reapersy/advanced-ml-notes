@@ -110,4 +110,19 @@ print(precisions)
 print(recalls)
 print(thresholds)
 self_print('plot precision recall vs threshold')
-def plot_precision_recall_vs_threshold(precisions, recalls, threshold
+def plot_precision_recall_vs_threshold(precisions, recalls, thresholds):
+    plt.plot(thresholds, precisions[:-1], 'b--', label='Precision')
+    plt.plot(thresholds, recalls[:-1], 'g-', label='Recall')
+    plt.xlabel('Threshold')
+    plt.legend(loc='upper left')
+    plt.ylim([0, 1])
+# plot_precision_recall_vs_threshold(precisions, recalls, thresholds)
+# plt.show()
+
+self_print('plot ROC curve')
+fpr, tpr, thresholds = roc_curve(y_train_5, y_scores)
+def plot_roc_curve(fpr, tpr, label=None):
+    plt.plot(fpr, tpr, linewidth=2, label=label)
+    plt.plot([0, 1], [0, 1], 'k--')
+    plt.axis([0, 1, 0, 1])
+    plt.xlabel('False Positive Rate')  # 1 - specificity or 1 - precisio
