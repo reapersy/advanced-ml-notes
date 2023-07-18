@@ -32,4 +32,18 @@ def train_theta_by_gradient_descent(X, y):
     saver = tf.train.Saver()  # create a Saver node after all variable nodes are created
     with tf.Session() as sess:
         sess.run(init)
-  
+        for epoch in range(n_epochs):
+            if epoch % 100 == 0:
+                print('Epoch', epoch, 'MSE =', mse.eval())
+                saver.save(sess=sess, save_path='cv/my_model.ckpt')
+            sess.run(training_op)
+        best_theta = theta.eval()
+        print('The last MSE is', mse.eval())
+        print('Best theta is', best_theta)
+        saver.save(sess=sess, save_path='cv/my_model_final.ckpt')
+# train_theta_by_gradient_descent(X_scaled, y)
+
+def train_theta_by_gd_load_para(X, y):
+    # global m
+    # n_epochs = 1000  # 迭代次数
+    # learning_rate =
