@@ -56,4 +56,9 @@ def train_theta_by_gd_load_para(X, y):
     # init = tf.global_variables_initializer()
     saver = tf.train.Saver()  # create a Saver node after all variable nodes are created
     with tf.Session() as sess:
-        sav
+        saver.restore(sess, 'cv/my_model_final.ckpt')  # 加载上面保存的final check point
+        # 在session中可以直接使用这些导入的参数进行运算
+        mse, error, theta = sess.run([mse, error, theta])
+        print(mse, theta)
+        print('error is', error)
+train_theta_by_gd_load_para(X_scaled, y)
