@@ -45,4 +45,13 @@ def train_theta_by_gradient_descent(X, y):
         sess.run(init)
         for epoch in range(n_epochs):
             if epoch % 10 == 0:
-                print('Epoch', epoch, 'MSE =', ms
+                print('Epoch', epoch, 'MSE =', mse.eval())
+                # 下面两步将mse summary写入了log文件
+                summary_str = mse_summary.eval()
+                file_writer.add_summary(summary=summary_str, global_step=epoch)
+            sess.run(training_op)
+        best_theta = theta.eval()
+        print('The last MSE is', mse.eval())
+        print('Best theta is', best_theta)
+    file_writer.close()
+train_theta_by_gradient_descent(X_scaled, y)
