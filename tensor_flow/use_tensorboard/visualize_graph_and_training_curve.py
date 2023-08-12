@@ -34,4 +34,15 @@ def train_theta_by_gradient_descent(X, y):
     y_pred = tf.matmul(X, theta, name='predictions')
     error = y_pred - y
     mse = tf.reduce_mean(tf.square(error), name='mse')
-    gradients = 2.0/m * tf.matmul(tf.transpose(X),
+    gradients = 2.0/m * tf.matmul(tf.transpose(X), error)
+    training_op = tf.assign(theta, theta - learning_rate * gradients)
+    init = tf.global_variables_initializer()
+    # add summary node
+    mse_summary = tf.summary.scalar('MSE', mse)
+    # create a FileWriter that you can use to write summaries to logfiles in the log directory
+    file_writer = tf.summary.FileWriter(logdir=logdir, graph=tf.get_default_graph())
+    with tf.Session() as sess:
+        sess.run(init)
+        for epoch in range(n_epochs):
+            if epoch % 10 == 0:
+                print('Epoch', epoch, 'MSE =', ms
